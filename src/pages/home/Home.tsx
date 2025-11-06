@@ -1,17 +1,29 @@
-import React, { useState } from 'react';
-import { MapPin, Car, Users, Building2, Clock } from 'lucide-react';
+import React, { useState } from "react";
+import { MapPin, Car, Users, Building2, Clock } from "lucide-react";
 
 export default function VeloGoHomePage() {
   const [activeFeature, setActiveFeature] = useState(0);
 
   const features = [
-    { icon: MapPin, title: 'Preço Justo', desc: 'Transparência em cada corrida' },
-    { icon: Car, title: 'Próximo a você', desc: 'Encontre transporte em segundos' },
-    { icon: Users, title: 'Motoristas Verificados', desc: 'Segurança garantida' }
+    {
+      icon: MapPin,
+      title: "Preço Justo",
+      desc: "Transparência em cada corrida",
+    },
+    {
+      icon: Car,
+      title: "Próximo a você",
+      desc: "Encontre transporte em segundos",
+    },
+    {
+      icon: Users,
+      title: "Motoristas Verificados",
+      desc: "Segurança garantida",
+    },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white">
+    <div className="min-h-screen bg-linear-to-b from-slate-800 via-slate-700 to-slate-900 text-white">
       {/* Header/Navbar */}
       <nav className="flex items-center justify-between px-8 py-4 bg-white/5 backdrop-blur-sm">
         <div className="flex items-center gap-2">
@@ -20,11 +32,17 @@ export default function VeloGoHomePage() {
           </div>
           <span className="text-2xl font-bold">VeloGo</span>
         </div>
-        
+
         <div className="hidden md:flex gap-8 text-sm">
-          <a href="#funciona" className="hover:text-orange-400 transition">Como Funciona</a>
-          <a href="#beneficios" className="hover:text-orange-400 transition">Benefícios</a>
-          <a href="#contato" className="hover:text-orange-400 transition">Contato</a>
+          <a href="#funciona" className="hover:text-orange-400 transition">
+            Como Funciona
+          </a>
+          <a href="#beneficios" className="hover:text-orange-400 transition">
+            Benefícios
+          </a>
+          <a href="#contato" className="hover:text-orange-400 transition">
+            Contato
+          </a>
         </div>
 
         <div className="flex gap-3">
@@ -43,12 +61,14 @@ export default function VeloGoHomePage() {
           {/* Left Content */}
           <div className="space-y-6">
             <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-              Mobilidade Inteligente<br />
+              Mobilidade Inteligente
+              <br />
               na Palma da Sua Mão
             </h1>
-            
+
             <p className="text-xl text-slate-300">
-              VeloGO conecta você aos melhores meios de transporte. Rápido, seguro e econômico.
+              VeloGO conecta você aos melhores meios de transporte. Rápido,
+              seguro e econômico.
             </p>
 
             <div className="flex gap-4 pt-4">
@@ -97,7 +117,9 @@ export default function VeloGoHomePage() {
               <div className="absolute bottom-8 left-8 right-8 space-y-3">
                 <div className="bg-slate-800/90 backdrop-blur rounded-xl p-4 shadow-xl">
                   <div className="font-semibold mb-1">Próximo a você</div>
-                  <div className="text-sm text-slate-300">Encontre transporte em segundos</div>
+                  <div className="text-sm text-slate-300">
+                    Encontre transporte em segundos
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-3 gap-2">
@@ -108,7 +130,9 @@ export default function VeloGoHomePage() {
                       onMouseEnter={() => setActiveFeature(idx)}
                     >
                       <feature.icon className="w-5 h-5 text-orange-400 mb-1" />
-                      <div className="text-xs text-center">{feature.title.split(' ')[0]}</div>
+                      <div className="text-xs text-center">
+                        {feature.title.split(" ")[0]}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -121,12 +145,16 @@ export default function VeloGoHomePage() {
             {/* Floating Feature Info */}
             <div className="absolute -bottom-6 -right-6 bg-slate-800 rounded-xl p-4 shadow-2xl border border-orange-500/20">
               <div className="flex items-center gap-3">
-                {React.createElement(features[activeFeature].icon, { 
-                  className: "w-8 h-8 text-orange-400" 
+                {React.createElement(features[activeFeature].icon, {
+                  className: "w-8 h-8 text-orange-400",
                 })}
                 <div>
-                  <div className="font-semibold text-sm">{features[activeFeature].title}</div>
-                  <div className="text-xs text-slate-400">{features[activeFeature].desc}</div>
+                  <div className="font-semibold text-sm">
+                    {features[activeFeature].title}
+                  </div>
+                  <div className="text-xs text-slate-400">
+                    {features[activeFeature].desc}
+                  </div>
                 </div>
               </div>
             </div>
