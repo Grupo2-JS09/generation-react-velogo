@@ -12,11 +12,7 @@ function DeletarCategoria() {
 
   async function buscarPorId(id: string) {
     try {
-      await buscar(`/categorias/${id}`, setCategoria, {
-        headers: {
-          Authorization: "Bearer token",
-        },
-      });
+      await buscar(`/categorias/${id}`, setCategoria);
     } catch (error: any) {
       console.error("Erro ao buscar categoria:", error);
     }
@@ -32,11 +28,7 @@ function DeletarCategoria() {
     setIsLoading(true);
 
     try {
-      await deletar(`/categorias/${id}`, {
-        headers: {
-          Authorization: "Bearer token",
-        },
-      });
+      await deletar(`/categorias/${id}`);
 
       alert("Categoria apagada com sucesso");
     } catch (error: any) {
@@ -52,38 +44,37 @@ function DeletarCategoria() {
   }
 
   return (
-    <div className="container w-1/3 mx-auto">
-      <h1 className="text-4xl text-center my-4">Deletar Categoria</h1>
+    <div className='container w-1/3 mx-auto'>
+      <h1 className='text-4xl text-center my-4'>Deletar Categoria</h1>
 
-      <p className="text-center font-semibold mb-4">
+      <p className='text-center font-semibold mb-4'>
         Voce tem certeza que deseja deletar esta categoria?
       </p>
 
-      <div className="border flex flex-col rounded-2xl overflow-hidden justify-between">
-        <header className="py-2 px-6 bg-indigo-600 text-white font-bold text-2xl">
+      <div className='border flex flex-col rounded-2xl overflow-hidden justify-between'>
+        <header className='py-2 px-6 bg-indigo-600 text-white font-bold text-2xl'>
           Categoria
         </header>
 
-        <div className="p-4">
-          <p className="text-xl h-full">{categoria.nome}</p>
-          <p>{categoria.descricao}</p>
+        <div className='p-4'>
+          <p className='text-xl h-full'>{categoria.tipo}</p>
         </div>
 
-        <div className="flex">
+        <div className='flex'>
           <button
-            className="text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2"
+            className='text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2'
             onClick={retornar}
           >
             Não
           </button>
 
           <button
-            className="w-full text-slate-100 bg-indigo-400
-                        hover:bg-indigo-600 flex items-center justify-center"
+            className='w-full text-slate-100 bg-indigo-400
+                        hover:bg-indigo-600 flex items-center justify-center'
             onClick={deletarCategoria}
           >
             {isLoading ? (
-              <ClipLoader color="#ffffff" size={24} />
+              <ClipLoader color='#ffffff' size={24} />
             ) : (
               <span>Sim</span>
             )}

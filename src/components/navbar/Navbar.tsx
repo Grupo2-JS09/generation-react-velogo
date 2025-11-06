@@ -15,13 +15,13 @@ function Navbar() {
               </Link>
             </span>
             <span>
-              <Link to='/temas' className='hover:underline'>
+              <Link to='/categorias' className='hover:underline'>
                 Temas
               </Link>
             </span>
             <span>
-              <Link to='/cadastrartema' className='hover:underline'>
-                Cadastrar tema
+              <Link to='/cadastrarcategorias' className='hover:underline'>
+                Cadastrar categorias
               </Link>
             </span>
             <span>
