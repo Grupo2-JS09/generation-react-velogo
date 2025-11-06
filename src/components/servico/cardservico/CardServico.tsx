@@ -17,17 +17,18 @@ function CardServico({ servico }: CardServicoProps) {
 
   async function dadosCorrida() {
     try {
-      await CalcularDestino(`/viagem/${servico.id}`, setValorCorrida);
-      await CalcularTempo(`/viagem/tempo/${servico.id}`, setTempoTotal);
+      await CalcularDestino(`/servicos/viagem/${servico.id}`, setValorCorrida);
+      await CalcularTempo(
+        `/servicos/viagem/tempo/${servico.id}`,
+        setTempoTotal
+      );
     } catch (error: any) {
       console.log(error);
     }
   }
 
   useEffect(() => {
-    if (id !== undefined) {
-      dadosCorrida(id);
-    }
+    dadosCorrida();
   }, [servico.id]);
 
   const formatNumber = (value: unknown, digits = 2) => {
