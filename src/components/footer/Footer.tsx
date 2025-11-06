@@ -1,29 +1,55 @@
-import { GithubLogoIcon, LinkedinLogoIcon } from "@phosphor-icons/react";
+import {
+  GithubLogoIcon,
+  LinkedinLogoIcon,
+  InstagramLogoIcon
+} from "@phosphor-icons/react";
+import { Car } from "lucide-react";
 
 function Footer() {
   const data = new Date().getFullYear();
 
   return (
-    <>
-      <div className='flex justify-center bg-indigo-900 text-white'>
-        <div className='container flex flex-col items-center py-4'>
-          <p className='text-xl font-bold'>
-            Blog Pessoal Generation | Copyright: {data}
-          </p>
-
-          <p className='text-lg'>Acesse nossas redes sociais</p>
-
-          <div className='flex gap-2'>
-            <a href='https://www.linkedin.com/in/bennerdias/' target='_blank'>
-              <LinkedinLogoIcon size={48} weight='bold' />
-            </a>
-            <a href='https://github.com/BennerDias' target='_blank'>
-              <GithubLogoIcon size={48} weight='bold' />
-            </a>
+    <footer className='flex justify-end bg-slate-900 text-white border-t border-white/10 backdrop-blur-sm'>
+      <div className='container mx-auto px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-6'>
+        {/* Logo + Nome */}
+        <div className='flex items-center gap-2'>
+          <div className='w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center'>
+            <Car className='w-6 h-6 text-white' />
           </div>
+          <span className='text-2xl font-bold'>VeloGo</span>
+        </div>
+
+        {/* Redes sociais */}
+        <div className='flex items-center gap-4 text-white/80'>
+          <a
+            href='https://www.linkedin.com/in/bennerdias/'
+            target='_blank'
+            className='hover:text-orange-400 transition'
+          >
+            <LinkedinLogoIcon size={28} weight='fill' />
+          </a>
+          <a
+            href='https://github.com/BennerDias'
+            target='_blank'
+            className='hover:text-orange-400 transition'
+          >
+            <GithubLogoIcon size={28} weight='fill' />
+          </a>
+          <a
+            href='https://instagram.com'
+            target='_blank'
+            className='hover:text-orange-400 transition'
+          >
+            <InstagramLogoIcon size={28} weight='fill' />
+          </a>
+        </div>
+
+        {/* Direitos */}
+        <div className='text-sm text-white/70 text-center md:text-right'>
+          <p>© {data} VeloGo — Todos os direitos reservados</p>
         </div>
       </div>
-    </>
+    </footer>
   );
 }
 

@@ -27,24 +27,29 @@ function ListaServicos() {
 
   return (
     <>
-      {isLoading && (
-        <div className='flex justify-center w-full my-8'>
-          <SyncLoader color='#0C2B4E' size={32} />
+      <div className='bg-[var(--lightgray)] h-screen py-5'>
+        <div className='flex justify-end'>
+          <button className='border-2 justify-items-end p-2 mx-50'>
+            Solicitar novo serviço
+          </button>
         </div>
-      )}
-
-      <div className='flex justify-center w-full my-4'>
-        <div className='container flex flex-col mx-2'>
-          {!isLoading && servicos.length === 0 && (
-            <span className='text-3xl text-center my-8'>
-              Nenhum Serviço foi encontrado!
-            </span>
-          )}
-
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-            {servicos.map((servico) => (
-              <CardServico key={servico.id} servico={servico} />
-            ))}
+        {isLoading && (
+          <div className='flex justify-center w-full my-8'>
+            <SyncLoader color='#0C2B4E' size={32} />
+          </div>
+        )}
+        <div className='flex justify-center w-full my-4'>
+          <div className='container flex flex-col mx-2'>
+            {!isLoading && servicos.length === 0 && (
+              <span className='text-3xl text-center my-8'>
+                Nenhum Serviço foi encontrado!
+              </span>
+            )}
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+              {servicos.map((servico) => (
+                <CardServico key={servico.id} servico={servico} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
