@@ -12,6 +12,7 @@ function App() {
       <BrowserRouter>
         <div className="min-h-[80vh]">
           <Routes>
+            
             <Route path="/" element={<Home />} />
             <Route path="/cadastrar" element={<Cadastro />} />
             <Route path="/categorias" element={<ListaCategoria />} />
