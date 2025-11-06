@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Cadastro() {
+  const navigate = useNavigate();
   return (
     <>
       <div className="min-h-screen bg-linear-to-br from-slate-800 via-slate-700 to-slate-900 text-white flex justify-center items-center">
@@ -81,12 +84,14 @@ export default function Cadastro() {
             <button
               type="reset"
               className="px-8 py-3 rounded-lg border border-white/30 hover:bg-white/10 transition"
+              onClick={() => navigate("/")}
             >
               Cancelar
             </button>
             <button
               type="submit"
               className="px-8 py-3 rounded-lg bg-orange-500 hover:bg-orange-600 transition font-semibold items-center"
+              onClick={() => navigate("/logar")}
             >
               Cadastrar
             </button>

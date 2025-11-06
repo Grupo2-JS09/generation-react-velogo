@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Login() {
+  const navigate = useNavigate();
   return (
     <>
       <div className="min-h-screen bg-linear-to-br from-slate-800 via-slate-700 to-slate-900 text-white flex justify-center items-center">
@@ -38,8 +41,9 @@ export default function Login() {
             <button
               type="submit"
               className="px-8 py-3 rounded-lg bg-orange-500 hover:bg-orange-600 transition font-semibold items-center"
+              onClick={() => navigate("/")}
             >
-              Cadastrar
+              Logar
             </button>
           </div>
         </form>
