@@ -62,13 +62,6 @@ function DeletarCategoria() {
 
         <div className='flex'>
           <button
-            className='text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2'
-            onClick={retornar}
-          >
-            Não
-          </button>
-
-          <button
             className='w-full text-slate-100 bg-indigo-400
                         hover:bg-indigo-600 flex items-center justify-center'
             onClick={deletarCategoria}
@@ -78,6 +71,12 @@ function DeletarCategoria() {
             ) : (
               <span>Sim</span>
             )}
+          </button>
+          <button
+            className='text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2'
+            onClick={retornar}
+          >
+            Não
           </button>
         </div>
       </div>

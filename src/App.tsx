@@ -5,6 +5,9 @@ import ListaCategoria from "./components/categoria/listacategoria/ListaCategoria
 import Home from "./pages/home/Home";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
+import ListaServicos from "./components/servico/listaservicos/ListaServicos";
+import DeletarServico from "./components/servico/deletarservico/DeletarServico";
+import FormServico from "./components/servico/formservico/FormServico";
 
 function App() {
   return (
@@ -15,19 +18,16 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/categorias' element={<ListaCategoria />} />
-            <Route path='/cadastrarcategorias' element={<FormCategoria />} />
-            <Route path='/editarcategorias/:id' element={<FormCategoria />} />
+            <Route path='/cadastrarcategoria' element={<FormCategoria />} />
+            <Route path='/editarcategoria/:id' element={<FormCategoria />} />
             <Route
               path='/deletarcategoria/:id'
               element={<DeletarCategoria />}
             />
-            <Route path='/servicos' element={<ListaCategoria />} />
+            <Route path='/servicos' element={<ListaServicos />} />
             <Route path='/cadastrarservico' element={<FormCategoria />} />
-            <Route path='/editarcategorias/:id' element={<FormCategoria />} />
-            <Route
-              path='/deletarcategoria/:id'
-              element={<DeletarCategoria />}
-            />
+            <Route path='/editarservico/:id' element={<FormServico />} />
+            <Route path='/deletarservico/:id' element={<DeletarServico />} />
           </Routes>
         </div>
         <Footer />

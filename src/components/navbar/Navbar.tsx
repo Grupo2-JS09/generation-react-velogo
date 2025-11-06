@@ -10,13 +10,13 @@ function Navbar() {
           </Link>
           <div className='flex gap-4'>
             <span className='hover:text-gray-300 cursor-pointer'>
-              <Link to='/postagens' className='hover:underline'>
-                Postagens
+              <Link to='/servicos' className='hover:underline'>
+                Serviços
               </Link>
             </span>
             <span>
               <Link to='/categorias' className='hover:underline'>
-                Temas
+                Categorias
               </Link>
             </span>
             <span>

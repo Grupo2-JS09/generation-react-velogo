@@ -32,3 +32,12 @@ export const atualizar = async (
 export const deletar = async (url: string) => {
   await api.delete(url);
 };
+
+export const CalcularDestino = async (url: string, setDados: Function) => {
+  const resposta = await api.get(url);
+  setDados(resposta.data);
+};
+export const CalcularTempo = async (url: string, setDados: Function) => {
+  const resposta = await api.get(url);
+  setDados(resposta.data);
+};

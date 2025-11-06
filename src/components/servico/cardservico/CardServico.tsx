@@ -1,72 +1,123 @@
+import { Link, useParams } from "react-router-dom";
 import type Servico from "../../../models/Servico";
-// import { Link } from "react-router-dom";
+import { MapPin, User, Gauge, Coins, Navigation } from "lucide-react";
+import { useEffect, useState } from "react";
+import { CalcularDestino, CalcularTempo } from "../../../services/Service";
 
 interface CardServicoProps {
   servico: Servico;
 }
 
-function CardServico({servico}: CardServicoProps) {
+function CardServico({ servico }: CardServicoProps) {
+  const [valorCorrida, setValorCorrida] = useState<number | null>(null);
+
+  const [tempoTotal, setTempoTotal] = useState<number | null>(null);
+
+  const { id } = useParams<{ id: string }>();
+
+  async function dadosCorrida() {
+    try {
+      await CalcularDestino(`/viagem/${servico.id}`, setValorCorrida);
+      await CalcularTempo(`/viagem/tempo/${servico.id}`, setTempoTotal);
+    } catch (error: any) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    if (id !== undefined) {
+      dadosCorrida(id);
+    }
+  }, [servico.id]);
+
+  const formatNumber = (value: unknown, digits = 2) => {
+    const n = Number(value ?? NaN);
+    if (Number.isNaN(n)) return null;
+    return n.toFixed(digits);
+  };
+
+  const distanciaText = (() => {
+    const v = Number(servico.distancia ?? NaN);
+    return Number.isNaN(v) ? "-" : `${v} km`;
+  })();
+
+  const velocidadeText = (() => {
+    const v = Number(servico.velocidade_media ?? NaN);
+    return Number.isNaN(v) ? "-" : `${v} km/h`;
+  })();
+
+  const precoKmText = (() => {
+    const s = formatNumber(servico.preco_km, 2);
+    return s === null ? "-" : s;
+  })();
+
   return (
-    <div className="border-slate-900 border flex flex-col rounded overflow-hidden justify-between">
-      <div>
+    <div className='bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-2xl overflow-hidden border border-gray-100 w-full max-w-sm p-5 flex flex-col gap-3'>
+      <div className='flex justify-between items-center'>
+        <span className='text-sm font-semibold text-blue-600 uppercase tracking-wide'>
+          {servico.categoria?.tipo || "Serviço"}
+        </span>
+      </div>
 
-        {/* Foto e nome do usuário */}
-        {/* <div className="flex w-full bg-indigo-400 py-2 px-4 items-center gap-4">
-          <img
-            src={servico.usuario?.foto || "https://cdn-icons-png.flaticon.com/128/15678/15678795.png"}
-            className="h-12 rounded-full"
-            alt={servico.usuario?.nome}
-          />
+      <div className='flex items-center gap-2'>
+        <MapPin className='text-blue-500 w-5 h-5' />
+        <p className='text-gray-800 font-medium'>{servico.destino}</p>
+      </div>
 
-          <h3 className="text-lg font-bold text-center uppercase">
-            {servico.usuario?.nome || "Anônimo"}
-          </h3>
-        </div> */}
-
-        <div className="p-4">
-          {/* <h4 className="text-lg font-semibold uppercase">{servico.titulo}</h4> */}
-          <h4 className="text-lg font-semibold uppercase">Serviços</h4>
-
-          <p>{servico.modalidade}</p>
-          {/* <p>Categoria: {servico.categoria?.nome_categoria}</p> */}
-          <p>Categoria: nome</p>
+      <div className='grid grid-cols-2 gap-3 text-sm text-gray-700 mt-2'>
+        <div className='flex items-center gap-2'>
+          <Navigation className='w-4 h-4 text-blue-400' />
           <p>
-            {/* Data:
-            {new Intl.DateTimeFormat("pt-BR", {
-              dateStyle: "full",
-              timeStyle: "medium",
-            }).format(new Date(servico.dt_matricula))} */}
-            Data: data
+            <span className='font-semibold'>Distância:</span> {distanciaText}
+          </p>
+        </div>
+
+        <div className='flex items-center gap-2'>
+          <Gauge className='w-4 h-4 text-blue-400' />
+          <p>
+            <span className='font-semibold'>Velocidade:</span> {velocidadeText}
+          </p>
+        </div>
+
+        <div className='flex items-center gap-2'>
+          <Coins className='w-4 h-4 text-blue-400' />
+          <p>
+            <span className='font-semibold'>Preço/KM:</span> R${precoKmText}
+          </p>
+        </div>
+
+        <div className='flex items-center gap-2'>
+          <User className='w-4 h-4 text-blue-400' />
+          <p className='truncate'>
+            <span className='font-semibold'>Passageiro:</span>{" "}
+            {servico.usuario?.nome || "Indefinido"}
+          </p>
+          <p className='text-gray-700'>
+            <span className='font-medium'>Velocidade média:</span>{" "}
+            {servico.velocidade_media} km/h
           </p>
         </div>
       </div>
+      <p className='text-blue-700 font-semibold'>
+        Tempo estimado:{" "}
+        {tempoTotal ? `${tempoTotal.toFixed(1)} min` : "Calculando..."}
+      </p>
+      <p className='text-green-700 font-semibold'>
+        Valor estimado:{" "}
+        {valorCorrida ? `R$ ${valorCorrida.toFixed(2)}` : "Calculando..."}
+      </p>
 
-      <div className="flex">
-        {/* <Link
-          to={`/editarservico/${servico.id}`}
-          className="w-full text-white bg-indigo-400 
-            hover:bg-indigo-800 flex items-center justify-center py-2"
-        >
-          <button>Editar</button>
-        </Link>
-        <Link
-          to={`/deletarservico/${servico.id}`}
-          className="text-white bg-red-400 
-            hover:bg-red-700 w-full flex items-center justify-center"
-        >
-          <button>Deletar</button>
-        </Link> */}
-
-        <button className="w-full text-slate-100 bg-[#6D94C5] hover:bg-[#234C6A] flex items-center justify-center py-2">
-          Editar
+      <div className='flex gap-6 justify-center w-full'>
+        <button className='mt-4 bg-blue-600 hover:bg-blue-900 text-white py-2 rounded-xl font-semibold transition-all duration-300 w-1/3'>
+          <Link to={`/editarservico/${servico.id}`}>Editar</Link>
         </button>
 
-        <button className="w-full text-slate-100 bg-red-400 hover:bg-red-700 flex items-center justify-center">
-            Deletar
+        <button className='mt-4 bg-red-600 hover:bg-red-900 text-white py-2 rounded-xl font-semibold transition-all duration-300 w-1/3 '>
+          <Link to={`/deletarservico/${servico.id}`}>Excluir</Link>
         </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default CardServico
+export default CardServico;
