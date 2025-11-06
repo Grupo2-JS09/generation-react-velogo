@@ -2,7 +2,7 @@ import { useEffect, useState, type ChangeEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import type Categoria from "../../../models/Categoria";
-import { atualizar, buscar } from "../../../services/Service";
+import { atualizar, buscar, cadastrar } from "../../../services/Service";
 
 function FormCategoria() {
   const navigate = useNavigate();
@@ -48,16 +48,16 @@ function FormCategoria() {
         });
         alert("Categoria atualizada com sucesso!");
       } catch (error) {
-        alert(`Erro ao atualizar categoria ${error}.`);
+        alert(`Erro ao atualizar categoria: ${error}`);
       }
     } else {
       try {
-        await atualizar(`/categorias`, categoria, setCategoria, {
+        await cadastrar(`/categorias`, categoria, setCategoria, {
           headers: { Authorization: "Bearer token" },
         });
         alert("Categoria criada com sucesso!");
       } catch (error) {
-        alert(`Erro ao criar categoria ${error}.`);
+        alert(`Erro ao criar categoria: ${error}`);
       }
     }
     setIsLoading(false);
