@@ -44,14 +44,14 @@ function FormCategoria() {
         await atualizar(`/categorias/atualizar`, categoria, setCategoria);
         alert("Categoria atualizada com sucesso!");
       } catch (error) {
-        alert(`Erro ao atualizar categoria ${error}.`);
+        alert(`Erro ao atualizar categoria: ${error}`);
       }
     } else {
       try {
         await cadastrar(`/categorias`, categoria, setCategoria);
         alert("Categoria criada com sucesso!");
       } catch (error) {
-        alert(`Erro ao criar categoria ${error}.`);
+        alert(`Erro ao criar categoria: ${error}`);
       }
     }
     setIsLoading(false);
