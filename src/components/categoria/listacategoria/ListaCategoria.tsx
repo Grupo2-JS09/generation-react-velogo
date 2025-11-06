@@ -16,9 +16,8 @@ function ListaCategorias() {
   async function buscarCategorias() {
     try {
       setIsLoading(true);
-      await buscar("/categorias", setCategorias, {
-        headers: { Authorization: "Bearer token" },
-      });
+      await buscar("/categorias", setCategorias)
+      console.log(categorias)
     } catch (error: any) {
       console.error("Erro ao buscar categorias", error);
     } finally {
@@ -28,11 +27,8 @@ function ListaCategorias() {
 
   return (
     <>
-      {isLoading && (
-        <div className="flex justify-center w-full my-8">
-          <SyncLoader color="#74b9ff" size={32} />
-        </div>
-      )}
+          
+      { isLoading && <SyncLoader color="#74b9ff" size={32} /> }
       <div className="flex justify-center w-full my-4">
         <div className="container flex flex-col">
           {!isLoading && categorias.length === 0 && (
