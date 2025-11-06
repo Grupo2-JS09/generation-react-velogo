@@ -4,7 +4,7 @@ export default function Cadastro() {
       <div className="min-h-screen bg-linear-to-br from-slate-800 via-slate-700 to-slate-900 text-white flex justify-center items-center">
         {/* <div className="lg:block hidden bg-no-repeat w-full min-h-screen bg-cover bg-center "></div> */}
         <form className="flex justify-center items-center flex-col w-2/3 gap-3 ">
-          <h2 className="text-4xl font-bold text-orange-400">Cadastrar</h2>
+          <h2 className="text-4xl font-bold text-white">Cadastrar</h2>
           <div className="flex flex-col w-full">
             <label className="text-orange-500 mb-1" htmlFor="nome">
               Nome
@@ -14,7 +14,7 @@ export default function Cadastro() {
               id="nome"
               name="nome"
               placeholder="Nome"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-2 border-slate-400 rounded p-2"
             />
           </div>
           <div className="flex flex-col w-full">
@@ -26,7 +26,7 @@ export default function Cadastro() {
               id="nome"
               name="nome"
               placeholder="Nome"
-              className="border-2 border-slate-700 rounded p-2 "
+              className="border-2 border-slate-400 rounded p-2 "
             />
           </div>
           <div className="flex flex-col w-full">
@@ -38,7 +38,7 @@ export default function Cadastro() {
               id="usuario"
               name="usuario"
               placeholder="Usuário"
-              className="border-2 border-slate-700 rounded p-2 "
+              className="border-2 border-slate-400 rounded p-2 "
             />
           </div>
           <div className="flex flex-col w-full">
@@ -50,7 +50,7 @@ export default function Cadastro() {
               id="foto"
               name="foto"
               placeholder="Foto"
-              className="border-2 border-slate-700 rounded p-2 "
+              className="border-2 border-slate-400 rounded p-2 "
             />
           </div>
           <div className="flex flex-col w-full">
@@ -62,7 +62,7 @@ export default function Cadastro() {
               id="senha"
               name="senha"
               placeholder="Senha"
-              className="border-2 border-slate-700 rounded p-2 "
+              className="border-2 border-slate-400 rounded p-2 "
             />
           </div>
           <div className="flex flex-col w-full">
@@ -74,7 +74,7 @@ export default function Cadastro() {
               id="confirmarsenha"
               name="confirmarsenha"
               placeholder="Confirmar Senha"
-              className="border-2 border-slate-700 rounded p-2 "
+              className="border-2 border-slate-400 rounded p-2 "
             />
           </div>
           <div className="flex gap-10">
