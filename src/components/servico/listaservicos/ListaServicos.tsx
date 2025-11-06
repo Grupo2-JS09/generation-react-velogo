@@ -1,11 +1,10 @@
 import type Servico from "../../../models/Servico";
 import { buscar } from "../../../services/Service";
-import CardServico from "../cardservico/CardServico"
+import CardServico from "../cardservico/CardServico";
 import { useEffect, useState } from "react";
 // import { SyncLoader } from "react-spinners";
 
 function ListaServicos() {
-
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -34,7 +33,6 @@ function ListaServicos() {
       //   headers: { Authorization: token },
       // });
       await buscar("/servicos", setServicos);
-
     } catch (error: any) {
       if (error.toString().includes("401")) {
         // handleLogout();
@@ -53,25 +51,23 @@ function ListaServicos() {
           </div>
         )} */}
 
+      <div className='flex justify-center w-full my-4'>
+        <div className='container flex flex-col mx-2'>
+          {!isLoading && servico.length === 0 && (
+            <span className='text-3xl text-center my-8'>
+              Nenhum Serviço foi encontrado!
+            </span>
+          )}
 
-      <div className="flex justify-center w-full my-4">
-          <div className="container flex flex-col mx-2">
-            {!isLoading && servico.length === 0 && (
-              <span className="text-3xl text-center my-8">
-                Nenhum Serviço foi encontrado!
-              </span>
-            )}
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {servicos.map((servico) => (
-                <CardServico key={servico.id} servico={servico} />
-              ))}
-            </div>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+            {servicos.map((servico) => (
+              <CardServico key={servico.id} servico={servico} />
+            ))}
           </div>
         </div>
-
+      </div>
     </>
-  )
+  );
 }
 
-export default ListaServicos
+export default ListaServicos;
