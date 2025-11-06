@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "http://localhost:8080",
 });
 
 export const buscar = async (
@@ -30,7 +30,7 @@ export const atualizar = async (
   setDados: Function,
   header: object
 ) => {
-  const resposta = await api.post(url, dados, header);
+  const resposta = await api.put(url, dados, header);
   setDados(resposta.data);
 };
 
