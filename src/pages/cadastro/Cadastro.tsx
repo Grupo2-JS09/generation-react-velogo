@@ -1,8 +1,8 @@
 export default function Cadastro() {
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-2 h-screen">
-        <div className="bg-[url('https://media.discordapp.net/attachments/1403376913224826951/1435967826891640923/image.png?ex=690de4c0&is=690c9340&hm=c7109397397ddf405b667fd01c2cc8e9b3fbfab13f71fbf8a0ed252a0a7c924e&=&format=webp&quality=lossless')] lg:block hidden bg-no-repeat w-full min-h-screen bg-cover bg-center"></div>
+      <div className="min-h-screen bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white justify-center items-center">
+        <div className="lg:block hidden bg-no-repeat w-full min-h-screen bg-cover bg-center "></div>
         <form className="flex justify-center items-center flex-col w-2/3 gap-3">
           <h2 className="text-slate-900 text-5xl">Cadastrar</h2>
           <div className="flex flex-col w-full">
@@ -68,15 +68,13 @@ export default function Cadastro() {
           <div>
             <button
               type="reset"
-              className="rounded text-white bg-red-400
-            hover:bg-red-900 w-1/2 py-2 flex justify-center"
+              className="px-8 py-3 rounded-lg border border-white/30 hover:bg-white/10 transition"
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="rounded text-white bg-indigo-400
-            hover:bg-indigo-900 w-1/2 py-2 flex justify-center"
+              className="px-6 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 transition font-semibold text-smr"
             >
               Cadastrar
             </button>
