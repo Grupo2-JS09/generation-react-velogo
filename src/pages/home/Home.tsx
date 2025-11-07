@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MapPin, Car, Users } from "lucide-react";
+import Navbar from "../../components/navbar/Navbar";
 
 export default function VeloGoHomePage() {
   const [activeFeature, setActiveFeature] = useState(0);

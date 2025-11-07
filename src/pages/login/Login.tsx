@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastAlerta } from "../../components/utils/ToastAlerta";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -19,9 +20,10 @@ export default function Login() {
 
     // Se tudo estiver OK, limpa o erro e navega
     setErro(null);
-    console.log("Cadastro válido, navegando...");
+    ToastAlerta(`Bem vindo! ${usuario}`, "sucesso");
     navigate("/home");
   };
+
   return (
     <>
       <div className='min-h-screen bg-linear-to-br from-slate-800 via-slate-700 to-slate-900 text-white flex justify-center items-center'>
@@ -46,7 +48,7 @@ export default function Login() {
               Senha
             </label>
             <input
-              type='text'
+              type='password'
               id='senha'
               name='senha'
               placeholder='Senha'
@@ -74,6 +76,10 @@ export default function Login() {
               Logar
             </button>
           </div>
+
+          <button className='px-8 py-3 rounded-lg border border-white/30 hover:bg-orange-600 transition font-semibold items-center'>
+            <Link to='/cadastro'>Cadastre-se Agora</Link>
+          </button>
         </form>
       </div>
     </>
