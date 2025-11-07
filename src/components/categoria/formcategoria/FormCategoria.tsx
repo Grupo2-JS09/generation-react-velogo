@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import type Categoria from "../../../models/Categoria";
 import { atualizar, buscar, cadastrar } from "../../../services/Service";
+import { Car } from "lucide-react";
 
 function FormCategoria() {
   const navigate = useNavigate();
@@ -59,14 +60,17 @@ function FormCategoria() {
   }
 
   return (
-    <div className="container flex flex-col items-center justify-center mx-auto">
+    <div className='flex flex-col items-center justify-center min-h-screen bg-[var(--lightgray)] h-screen py-10 px-5'>
       <h1 className="text-4xl text-center my-8">
         {id === undefined ? "Cadastrar Categoria" : "Editar Categoria"}
       </h1>
 
-      <form className="w-1/2 flex flex-col gap-4" onSubmit={gerarNovaCategoria}>
+      <form className='flex flex-col gap-5' onSubmit={gerarNovaCategoria}>
         <div className="flex flex-col gap-2">
-          <label htmlFor="tipo">Nome da Categoria</label>
+          <label htmlFor="tipo" className='font-medium text-gray-700'>
+          <Car className='inline-block w-4 h-4 mr-1 text-(--orange)'/>
+          Nome da Categoria
+          </label>
           <input
             type="text"
             placeholder="Qual o nome da categoria?"

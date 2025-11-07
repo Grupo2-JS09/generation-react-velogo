@@ -94,16 +94,16 @@ function FormServico() {
   const carregandoCategoria = categoria.tipo === "";
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-slate-100 to-slate-200 py-10 px-5'>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-[var(--lightgray)] h-screen py-10 px-5'>
       <div className='bg-white shadow-lg rounded-2xl border border-gray-100 p-8 w-full max-w-lg'>
-        <h1 className='text-3xl font-bold text-center text-blue-700 mb-8'>
+        <h1 className='text-3xl font-bold text-center text-(--orange) mb-8'>
           {id !== undefined ? "Editar Serviço" : "Cadastrar Serviço"}
         </h1>
 
         <form className='flex flex-col gap-5' onSubmit={gerarNovoServico}>
-          <div className='flex flex-col gap-2'>
+          <div className='flex flex-col gap-2 '>
             <label htmlFor='destino' className='font-medium text-gray-700'>
-              <MapPin className='inline-block w-4 h-4 mr-1 text-blue-500' />
+              <MapPin className='inline-block w-4 h-4 mr-1 text-(--orange)' />
               Destino
             </label>
             <input
@@ -122,7 +122,7 @@ function FormServico() {
           <div className='grid grid-cols-2 gap-5'>
             <div className='flex flex-col gap-2'>
               <label htmlFor='distancia' className='font-medium text-gray-700'>
-                <Navigation className='inline-block w-4 h-4 mr-1 text-blue-500' />
+                <Navigation className='inline-block w-4 h-4 mr-1 text-(--orange)' />
                 Distância (km)
               </label>
               <input
@@ -143,7 +143,7 @@ function FormServico() {
                 htmlFor='velocidade_media'
                 className='font-medium text-gray-700'
               >
-                <Gauge className='inline-block w-4 h-4 mr-1 text-blue-500' />
+                <Gauge className='inline-block w-4 h-4 mr-1 text-(--orange)' />
                 Velocidade Média (km/h)
               </label>
               <input
@@ -162,7 +162,7 @@ function FormServico() {
 
           <div className='flex flex-col gap-2'>
             <label htmlFor='preco_km' className='font-medium text-gray-700'>
-              <Coins className='inline-block w-4 h-4 mr-1 text-blue-500' />
+              <Coins className='inline-block w-4 h-4 mr-1 text-(--orange)' />
               Preço por Km (R$)
             </label>
             <input
@@ -202,7 +202,7 @@ function FormServico() {
 
           <button
             type='submit'
-            className='mt-4 bg-blue-600 hover:bg-blue-800 transition-all text-white font-semibold py-3 rounded-xl flex justify-center items-center disabled:bg-gray-300'
+            className='px-6 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 transition font-semibold text-sm text-white'
             disabled={carregandoCategoria || isLoading}
           >
             {isLoading ? (
