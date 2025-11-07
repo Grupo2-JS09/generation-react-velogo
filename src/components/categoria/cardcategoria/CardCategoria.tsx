@@ -1,6 +1,7 @@
 import { Car } from "lucide-react";
 import { Link } from "react-router-dom";
 import type Categoria from "../../../models/Categoria";
+import { Car } from "lucide-react";
 
 interface CardCategoriaProps {
   categoria: Categoria;
@@ -23,12 +24,8 @@ function CardCategoria({ categoria }: CardCategoriaProps) {
           to={`/editarcategoria/${categoria.id}`}
           className="mt-4 bg-[var(--darkblue)] hover:bg-blue-900 text-white py-2 rounded-xl font-semibold transition-all duration-300 w-1/3"
         >
-          <Link
-            to={`/editarcategoria/${categoria.id}`}
-            className='w-full text-slate-100 bg-indigo-400 hover:bg-indigo-800 flex items-center justify-center py-2'
-          >
-            <button>Editar</button>
-          </Link>
+          <button>Editar</button>
+        </Link>
 
         <Link
           to={`/deletarcategoria/${categoria.id}`}

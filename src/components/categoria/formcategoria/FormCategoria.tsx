@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import type Categoria from "../../../models/Categoria";
 import { atualizar, buscar, cadastrar } from "../../../services/Service";
+import { Car } from "lucide-react";
 
 function FormCategoria() {
   const navigate = useNavigate();

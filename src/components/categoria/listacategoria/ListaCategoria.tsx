@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { SyncLoader } from "react-spinners";
 import type Categoria from "../../../models/Categoria";
 import { buscar } from "../../../services/Service";
+import CardCategoria from "../cardcategoria/CardCategoria";
+import { Link } from "react-router-dom";
 
 function ListaCategorias() {
   const [isLoading, setIsLoading] = useState(false);
