@@ -57,16 +57,6 @@ function FormCategoria() {
   }
 
   return (
-<<<<<<< Updated upstream
-    <div className="container flex flex-col items-center justify-center mx-auto">
-      <h1 className="text-4xl text-center my-8">
-        {id === undefined ? "Cadastrar Categoria" : "Editar Categoria"}
-      </h1>
-
-      <form className="w-1/2 flex flex-col gap-4" onSubmit={gerarNovaCategoria}>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="tipo">Nome da Categoria</label>
-=======
     <div className="min-h-screen bg-gradient-to-b from-slate-800 via-slate-700 to-slate-900 text-white flex flex-col items-center py-10 px-6">
       <h1 className="flex flex-col items-center py-10 px-6">
         {id === undefined ? "Cadastrar Categoria" : "Editar Categoria"}
@@ -81,7 +71,6 @@ function FormCategoria() {
             <Car className="inline-block w-5 h-5 mr-2 text-orange-400" />
             Nome da Categoria
           </label>
->>>>>>> Stashed changes
           <input
             type="text"
             name="tipo"

@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-<<<<<<< Updated upstream
-=======
 import { Link } from "react-router-dom";
->>>>>>> Stashed changes
 import { SyncLoader } from "react-spinners";
 import type Servico from "../../../models/Servico";
 import { buscar } from "../../../services/Service";
@@ -30,14 +27,6 @@ function ListaServicos() {
   }
 
   return (
-<<<<<<< Updated upstream
-    <>
-      <div className="min-h-screen bg-linear-to-b from-slate-800 via-slate-700 to-slate-900 text-white">
-        <div className="h-screen py-5">
-          {isLoading && (
-            <div className="flex justify-center w-full my-8">
-              <SyncLoader color="#74b9ff" size={32} />
-=======
     <div className="min-h-screen bg-gradient-to-b from-slate-800 via-slate-700 to-slate-900 text-white">
       <div className="flex flex-col items-center min-h-screen py-10 px-6">
         <h1 className="text-4xl font-bold mb-12 text-center tracking-tight">
@@ -67,7 +56,6 @@ function ListaServicos() {
               className="flex flex-col items-center bg-slate-800 bg-opacity-70 rounded-2xl shadow-lg p-6 hover:bg-slate-700 hover:scale-105 transition duration-300"
             >
               <CardServico key={servico.id} servico={servico} />
->>>>>>> Stashed changes
             </div>
           ))}
         </div>

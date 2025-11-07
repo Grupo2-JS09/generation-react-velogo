@@ -5,10 +5,6 @@ import { Link } from "react-router-dom";
 import { SyncLoader } from "react-spinners";
 import type Categoria from "../../../models/Categoria";
 import { buscar } from "../../../services/Service";
-<<<<<<< Updated upstream
-import CardCategoria from "../cardcategoria/CardCategoria";
-=======
->>>>>>> Stashed changes
 
 function ListaCategorias() {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,30 +27,6 @@ function ListaCategorias() {
   }
 
   return (
-<<<<<<< Updated upstream
-    <>
-      <div className="min-h-screen bg-linear-to-b from-slate-800 via-slate-700 to-slate-900 text-white">
-        <div className="h-screen py-5">
-          {isLoading && (
-            <div className="flex justify-center w-full my-8">
-              <SyncLoader color="#74b9ff" size={32} />
-            </div>
-          )}
-          <div className="flex justify-center w-full my-4">
-            <div className="container flex flex-col">
-              {!isLoading && categorias.length === 0 && (
-                <span className="text-3xl text-center my-8">
-                  Nenhuma Categoria foi encontrada!
-                </span>
-              )}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {categorias.map((categoria) => (
-                  <CardCategoria key={categoria.id} categoria={categoria} />
-                ))}
-              </div>
-            </div>
-          </div>
-=======
     <div className="min-h-screen bg-gradient-to-b from-slate-800 via-slate-700 to-slate-900 text-white">
       <div className="flex flex-col items-center min-h-screen py-10 px-6">
         <h1 className="text-4xl font-bold mb-12 text-center tracking-tight">
@@ -106,7 +78,6 @@ function ListaCategorias() {
               </div>
             </div>
           ))}
->>>>>>> Stashed changes
         </div>
       </div>
     </div>

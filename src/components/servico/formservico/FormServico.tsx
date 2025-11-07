@@ -79,118 +79,6 @@ function FormServico() {
   const carregandoCategoria = categoria.tipo === "";
 
   return (
-<<<<<<< Updated upstream
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-slate-100 to-slate-200 py-10 px-5'>
-      <div className='bg-white shadow-lg rounded-2xl border border-gray-100 p-8 w-full max-w-lg'>
-        <h1 className='text-3xl font-bold text-center text-blue-700 mb-8'>
-          {id !== undefined ? "Editar Serviço" : "Cadastrar Serviço"}
-        </h1>
-
-        <form className='flex flex-col gap-5' onSubmit={gerarNovoServico}>
-          <div className='flex flex-col gap-2'>
-            <label htmlFor='destino' className='font-medium text-gray-700'>
-              <MapPin className='inline-block w-4 h-4 mr-1 text-blue-500' />
-              Destino
-            </label>
-            <input
-              type='text'
-              name='destino'
-              placeholder='Ex: Av. Paulista, 123'
-              required
-              className='border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-400'
-              value={servico.destino || ""}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                atualizarEstado(e)
-              }
-            />
-          </div>
-
-          <div className='grid grid-cols-2 gap-5'>
-            <div className='flex flex-col gap-2'>
-              <label htmlFor='distancia' className='font-medium text-gray-700'>
-                <Navigation className='inline-block w-4 h-4 mr-1 text-blue-500' />
-                Distância (km)
-              </label>
-              <input
-                type='number'
-                name='distancia'
-                placeholder='Ex: 12'
-                required
-                className='border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-400'
-                value={servico.distancia || ""}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  atualizarEstado(e)
-                }
-              />
-            </div>
-
-            <div className='flex flex-col gap-2'>
-              <label
-                htmlFor='velocidade_media'
-                className='font-medium text-gray-700'
-              >
-                <Gauge className='inline-block w-4 h-4 mr-1 text-blue-500' />
-                Velocidade Média (km/h)
-              </label>
-              <input
-                type='number'
-                name='velocidade_media'
-                placeholder='Ex: 60'
-                required
-                className='border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-400'
-                value={servico.velocidade_media || ""}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  atualizarEstado(e)
-                }
-              />
-            </div>
-          </div>
-
-          <div className='flex flex-col gap-2'>
-            <label htmlFor='preco_km' className='font-medium text-gray-700'>
-              <Coins className='inline-block w-4 h-4 mr-1 text-blue-500' />
-              Preço por Km (R$)
-            </label>
-            <input
-              type='number'
-              name='preco_km'
-              placeholder='Ex: 3.50'
-              step='0.01'
-              required
-              className='border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-400'
-              value={servico.preco_km}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                atualizarEstado(e)
-              }
-            />
-          </div>
-
-          <div className='flex flex-col gap-2'>
-            <label htmlFor='categoria' className='font-medium text-gray-700'>
-              Categoria do Serviço
-            </label>
-            <select
-              name='categoria'
-              id='categoria'
-              className='border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-400'
-              onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)}
-            >
-              <option value='' disabled selected>
-                Selecione uma categoria
-              </option>
-              {categorias.map((categoria) => (
-                <option key={categoria.id} value={categoria.id}>
-                  {categoria.tipo}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <button
-            type='submit'
-            className='mt-4 bg-blue-600 hover:bg-blue-800 transition-all text-white font-semibold py-3 rounded-xl flex justify-center items-center disabled:bg-gray-300'
-            disabled={carregandoCategoria || isLoading}
-=======
     <div className="min-h-screen bg-gradient-to-b from-slate-800 via-slate-700 to-slate-900 text-white flex flex-col items-center py-10 px-6">
       <h1 className="flex flex-col items-center py-10 px-6">
         {id !== undefined ? "Editar Serviço" : "Cadastrar Serviço"}
@@ -270,7 +158,6 @@ function FormServico() {
             name="categoria"
             className="w-full p-3 rounded-lg bg-slate-900 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-orange-400"
             onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)}
->>>>>>> Stashed changes
           >
             <option value="">Selecione uma Categoria</option>
             {categorias.map((c) => (
