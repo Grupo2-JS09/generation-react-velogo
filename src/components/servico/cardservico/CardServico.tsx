@@ -55,7 +55,7 @@ function CardServico({ servico }: CardServicoProps) {
   return (
     <div className='bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-2xl overflow-hidden border border-gray-100 w-full max-w-sm p-5 flex flex-col justify-around gap-3'>
       <div className='flex justify-between items-center'>
-        <span className='text-sm font-semibold text-[var(--darkblue)] uppercase tracking-wide'>
+        <span className='text-sm font-semibold  uppercase tracking-wide'>
           {servico.categoria?.tipo || "Serviço"}
         </span>
       </div>
