@@ -53,9 +53,9 @@ function CardServico({ servico }: CardServicoProps) {
   })();
 
   return (
-    <div className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-2xl overflow-hidden border border-gray-100 w-full max-w-sm p-5 flex flex-col justify-around gap-3">
-      <div className="flex justify-between items-center">
-        <span className="text-sm font-semibold text-[var(--darkblue)] uppercase tracking-wide">
+    <div className="hover:shadow-xl transition-shadow duration-300 rounded-2xl overflow-hidden w-full max-w-sm p-5 flex flex-col justify-around gap-3">
+      <div className="flex justify-center items-center border-b border-gray-100 pb-2">
+        <span className="text-sm font-semibold uppercase tracking-wide text-white">
           {servico.categoria?.tipo || "Serviço"}
         </span>
       </div>
@@ -114,14 +114,14 @@ function CardServico({ servico }: CardServicoProps) {
       <div className="flex gap-6 justify-center align-center h-fit text-center">
         <Link
           to={`/editarservico/${servico.id}`}
-          className="w-auto p-5 mt-4 align-middle text-center  bg-[var(--darkblue)] hover:bg-blue-900 text-white rounded-xl font-semibold transition-all duration-300 w-1/3"
+          className="w-auto p-5 mt-4 align-middle text-center bg-[var(--darkblue)] hover:bg-blue-900 text-white rounded-xl font-semibold transition-all duration-300 w-1/3"
         >
           <button>Editar</button>
         </Link>
 
         <Link
           to={`/deletarservico/${servico.id}`}
-          className="w-auto mt-4 p-5 bg-red-600 hover:bg-red-900 text-white rounded-xl font-semibold transition-all duration-300 w-1/3 "
+          className="w-auto p-5 mt-4 bg-red-600 hover:bg-red-900 text-white rounded-xl font-semibold transition-all duration-300 w-1/3 "
         >
           <button>Deletar</button>
         </Link>

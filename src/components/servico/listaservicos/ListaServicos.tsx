@@ -51,12 +51,7 @@ function ListaServicos() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 w-full max-w-6xl">
           {servicos.map((servico) => (
-            <div
-              key={servico.id}
-              className="flex flex-col items-center bg-slate-800 bg-opacity-70 rounded-2xl shadow-lg p-6 hover:bg-slate-700 hover:scale-105 transition duration-300"
-            >
-              <CardServico key={servico.id} servico={servico} />
-            </div>
+            <CardServico key={servico.id} servico={servico} />
           ))}
         </div>
       </div>
