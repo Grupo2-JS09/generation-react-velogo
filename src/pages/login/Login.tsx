@@ -20,46 +20,46 @@ export default function Login() {
     // Se tudo estiver OK, limpa o erro e navega
     setErro(null);
     console.log("Cadastro válido, navegando...");
-    navigate("/");
+    navigate("/home");
   };
   return (
     <>
-      <div className="min-h-screen bg-linear-to-br from-slate-800 via-slate-700 to-slate-900 text-white flex justify-center items-center">
-        <form className="flex justify-center items-center flex-col gap-4">
-          <h2 className="text-4xl font-bold text-white">Entrar</h2>
-          <div className="flex flex-col w-full">
-            <label className="text-orange-500 mb-1" htmlFor="usuario">
+      <div className='min-h-screen bg-linear-to-br from-slate-800 via-slate-700 to-slate-900 text-white flex justify-center items-center'>
+        <form className='flex justify-center items-center flex-col gap-4'>
+          <h2 className='text-4xl font-bold text-white'>Entrar</h2>
+          <div className='flex flex-col w-full'>
+            <label className='text-orange-500 mb-1' htmlFor='usuario'>
               Usuario
             </label>
             <input
-              type="text"
-              id="usuario"
-              name="usuario"
-              placeholder="Nome"
-              className="border-2 border-slate-400 rounded p-2"
+              type='text'
+              id='usuario'
+              name='usuario'
+              placeholder='Nome'
+              className='border-2 border-slate-400 rounded p-2'
               value={usuario}
               onChange={(e) => setUsuario(e.target.value)}
             />
           </div>
-          <div className="flex flex-col w-full">
-            <label className="text-orange-500 mb-1" htmlFor="senha">
+          <div className='flex flex-col w-full'>
+            <label className='text-orange-500 mb-1' htmlFor='senha'>
               Senha
             </label>
             <input
-              type="text"
-              id="senha"
-              name="senha"
-              placeholder="Senha"
-              className="border-2 border-slate-400 rounded p-2"
+              type='text'
+              id='senha'
+              name='senha'
+              placeholder='Senha'
+              className='border-2 border-slate-400 rounded p-2'
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
             />
           </div>
-          {erro && <p className="text-red-500 text-center mt-2">{erro}</p>}
-          <div className="flex gap-10">
+          {erro && <p className='text-red-500 text-center mt-2'>{erro}</p>}
+          <div className='flex gap-10'>
             <button
-              type="reset"
-              className="px-8 py-3 rounded-lg border border-white/30 hover:bg-white/10 transition"
+              type='reset'
+              className='px-8 py-3 rounded-lg border border-white/30 hover:bg-white/10 transition'
               onClick={() => {
                 navigate("/");
               }}
@@ -67,8 +67,8 @@ export default function Login() {
               Cancelar
             </button>
             <button
-              type="submit"
-              className="px-8 py-3 rounded-lg bg-orange-500 hover:bg-orange-600 transition font-semibold items-center"
+              type='submit'
+              className='px-8 py-3 rounded-lg bg-orange-500 hover:bg-orange-600 transition font-semibold items-center'
               onClick={handleLogin}
             >
               Logar
