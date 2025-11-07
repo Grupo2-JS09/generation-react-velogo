@@ -49,7 +49,7 @@ function Contato() {
       nome: "Vinícius Valverde",
       github: "https://github.com/Valverde08",
       linkedin: "https://linkedin.com/in/vinicius-valverde",
-      foto: "https://avatars.githubusercontent.com/u/120853222?v=4",
+      foto: "https://media.licdn.com/dms/image/v2/D4D03AQF7mKDRukmAow/profile-displayphoto-scale_200_200/B4DZnd4tUPJEAY-/0/1760364255026?e=1764201600&v=beta&t=x4WEDOXBjD8puBebJcr9mj3TS4nq75hvhP-ZaZfKiwc",
     },
   ];
 
