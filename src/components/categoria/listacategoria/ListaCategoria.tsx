@@ -16,8 +16,8 @@ function ListaCategorias() {
   async function buscarCategorias() {
     try {
       setIsLoading(true);
-      await buscar("/categorias", setCategorias)
-      console.log(categorias)
+      await buscar("/categorias", setCategorias);
+      console.log(categorias);
     } catch (error: any) {
       console.error("Erro ao buscar categorias", error);
     } finally {
@@ -27,19 +27,22 @@ function ListaCategorias() {
 
   return (
     <>
-          
-      { isLoading && <SyncLoader color="#74b9ff" size={32} /> }
-      <div className="flex justify-center w-full my-4">
-        <div className="container flex flex-col">
-          {!isLoading && categorias.length === 0 && (
-            <span className="text-3xl text-center my-8">
-              Nenhuma Categoria foi encontrada!
-            </span>
-          )}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categorias.map((categoria) => (
-              <CardCategoria key={categoria.id} categoria={categoria} />
-            ))}
+      <div className="min-h-screen bg-linear-to-b from-slate-800 via-slate-700 to-slate-900 text-white">
+        <div className="flex justify-center w-full py-4">
+          {isLoading && <SyncLoader color="#74b9ff" size={32} />}
+        </div>
+        <div className="flex justify-center w-full my-4">
+          <div className="container flex flex-col">
+            {!isLoading && categorias.length === 0 && (
+              <span className="text-3xl text-center my-8">
+                Nenhuma Categoria foi encontrada!
+              </span>
+            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {categorias.map((categoria) => (
+                <CardCategoria key={categoria.id} categoria={categoria} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
