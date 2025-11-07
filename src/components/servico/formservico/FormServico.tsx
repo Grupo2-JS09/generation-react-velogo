@@ -1,218 +1,185 @@
-import {
-  useEffect,
-  useState,
-  type ChangeEvent,
-  type FormEvent,
-} from "react";
-import { useNavigate } from "react-router-dom";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Coins, Gauge, MapPin, Navigation } from "lucide-react";
+import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-// import { AuthContext } from "../../../contexts/AuthContext";
-import { atualizar, buscar, cadastrar } from "../../../services/Service";
+import type Categoria from "../../../models/Categoria";
 import type Servico from "../../../models/Servico";
+import { atualizar, buscar, cadastrar } from "../../../services/Service";
 
 function FormServico() {
   const navigate = useNavigate();
-
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  // const [categorias, setCategorias] = useState<Categoria[]>([]);
-
-  // const [categoria, setCategoria] = useState<Categoria>({ id: 0, descricao: "" });
-
+  const [categorias, setCategorias] = useState<Categoria[]>([]);
+  const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
   const [servico, setServico] = useState<Servico>({} as Servico);
-
-  // const { usuario, handleLogout } = useContext(AuthContext);
-  // const token = usuario.token;
-
-  // const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>();
 
   async function buscarServicoPorId(id: string) {
     try {
-      // await buscar(`/postagens/${id}`, setServico, {
-      //   headers: { Authorization: token },
-      // });
-      await buscar(`/servicos/${id}`, setServico)
+      await buscar(`/servicos/${id}`, setServico);
     } catch (error: any) {
-      if (error.toString().includes("401")) {
-        // handleLogout();
-        navigate("/")
-      }
+      console.error(error);
     }
   }
 
-  // async function buscarCategoriaPorId(id: string) {
-  //   try {
-  //     await buscar(`/categorias/${id}`, setCategoria, {
-  //       headers: { Authorization: token },
-  //     });
-  //   } catch (error: any) {
-  //     if (error.toString().includes("401")) {
-  //       handleLogout();
-  //     }
-  //   }
-  // }
+  async function buscarCategoriaPorId(id: string) {
+    try {
+      await buscar(`/categorias/${id}`, setCategoria);
+    } catch (error: any) {
+      console.error(error);
+    }
+  }
 
-  // async function buscarCategorias() {
-  //   try {
-  //     await buscar("/categorias", setCategorias, {
-  //       headers: { Authorization: token },
-  //     });
-  //   } catch (error: any) {
-  //     if (error.toString().includes("401")) {
-  //       handleLogout();
-  //     }
-  //   }
-  // }
+  async function buscarCategorias() {
+    try {
+      await buscar("/categorias", setCategorias);
+    } catch (error: any) {
+      console.error(error);
+    }
+  }
 
-  // useEffect(() => {
-  //   if (token === "") {
-  //     ToastAlerta("Você precisa estar logado", "info");
-  //     navigate("/");
-  //   }
-  // }, [token]);
+  useEffect(() => {
+    buscarCategorias();
+    if (id !== undefined) buscarServicoPorId(id);
+  }, [id]);
 
-  // useEffect(() => {
-  //   buscarCategorias();
-
-  //   if (id !== undefined) {
-  //     buscarServicoPorId(id);
-  //   }
-  // }, [id]);
-
-  // useEffect(() => {
-  //   setServico({
-  //     ...servico,
-  //     categoria: categoria,
-  //   });
-  // }, [categoria]);
+  useEffect(() => {
+    setServico((prev) => ({ ...prev, categoria }));
+  }, [categoria]);
 
   function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
     setServico({
       ...servico,
       [e.target.name]: e.target.value,
-      // categoria: categoria,
-      // usuario: usuario,
+      categoria,
     });
-  }
-
-  function retornar() {
-    navigate("/servicos");
   }
 
   async function gerarNovoServico(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsLoading(true);
 
-    if (id !== undefined) {
-      try {
+    try {
+      if (id !== undefined) {
         await atualizar(`/servicos`, servico, setServico);
-        alert("Serviço atualizado com sucesso");
-
-      } catch (error: any) {
-        if (error.toString().includes("401")) {
-          // handleLogout();
-          navigate("/")
-        } else {
-          alert("Erro ao atualizar a Serviço");
-        }
-      }
-    } else {
-      try {
+        alert("Serviço atualizado com sucesso!");
+      } else {
         await cadastrar(`/servicos`, servico, setServico);
-        alert("Serviço cadastrado com sucesso");
-
-      } catch (error: any) {
-        if (error.toString().includes("401")) {
-          navigate("/")
-        } else {
-          alert("Erro ao cadastrar a Serviço");
-        }
+        alert("Serviço cadastrado com sucesso!");
       }
+      navigate("/servicos");
+    } catch (error: any) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
-    retornar();
   }
 
-  // const carregandoCategoria = categoria.descricao === "";
+  const carregandoCategoria = categoria.tipo === "";
 
   return (
-    <div className="container flex flex-col mx-auto items-center">
-      <h1 className="text-4xl text-center my-8">
+    <div className="min-h-screen bg-gradient-to-b from-slate-800 via-slate-700 to-slate-900 text-white flex flex-col items-center py-10 px-6">
+      <h1 className="flex flex-col items-center py-10 px-6">
         {id !== undefined ? "Editar Serviço" : "Cadastrar Serviço"}
       </h1>
 
-      <form className="flex flex-col w-1/2 gap-4" onSubmit={gerarNovoServico}>
+      <form
+        onSubmit={gerarNovoServico}
+        className="bg-slate-800/60 rounded-2xl shadow-lg p-8 w-full max-w-md flex flex-col gap-6 border border-slate-700"
+      >
         <div className="flex flex-col gap-2">
-          <label htmlFor="valor">Valor da mensalidade</label>
+          <label className="block mb-2 text-sm font-semibold">
+            <MapPin className="inline-block w-5 h-5 mr-2 text-orange-400" />
+            Destino
+          </label>
           <input
             type="text"
-            placeholder="Valor"
-            name="valor"
+            name="destino"
+            placeholder="Ex: Av. Paulista, 123"
             required
-            className="border-2 border-slate-700 rounded p-2"
-            value={servico.valor_mensalidade}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+            className="w-full p-3 rounded-lg bg-slate-900 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-orange-400"
+            value={servico.destino || ""}
+            onChange={atualizarEstado}
+          />
+        </div>
+        <div>
+          <label className="block mb-2 text-sm font-semibold">
+            <Navigation className="inline-block w-5 h-5 mr-2 text-orange-400" />
+            Distância (km)
+          </label>
+          <input
+            type="number"
+            name="distancia"
+            placeholder="Ex: 12"
+            required
+            className="w-full p-3 rounded-lg bg-slate-900 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-orange-400"
+            value={servico.distancia || ""}
+            onChange={atualizarEstado}
+          />
+        </div>
+        <div>
+          <label className="block mb-2 text-sm font-semibold">
+            <Gauge className="inline-block w-5 h-5 mr-2 text-orange-400" />
+            Velocidade Média (km/h)
+          </label>
+          <input
+            type="number"
+            name="velocidade_media"
+            placeholder="Ex: 60"
+            required
+            className="w-full p-3 rounded-lg bg-slate-900 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-orange-400"
+            value={servico.velocidade_media || ""}
+            onChange={atualizarEstado}
           />
         </div>
 
-        <div className="flex flex-col gap-2">
-          <label htmlFor="frequencia">Frequência</label>
+        <div>
+          <label className="block mb-2 text-sm font-semibold">
+            <Coins className="inline-block w-5 h-5 mr-2 text-orange-400" />
+            Preço por Km (R$)
+          </label>
           <input
-            type="text"
-            placeholder="Frequência"
-            name="frequencia"
+            type="number"
+            name="preco_km"
+            placeholder="Ex: 3.50"
+            step="0.01"
             required
-            className="border-2 border-slate-700 rounded p-2"
-            value={servico.frequencia}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+            className="w-full p-3 rounded-lg bg-slate-900 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-orange-400"
+            value={servico.preco_km || ""}
+            onChange={atualizarEstado}
           />
         </div>
-
-        <div className="flex flex-col gap-2">
-          <label htmlFor="modalidade">Modalidade</label>
-          <input
-            type="text"
-            placeholder="Modalidade"
-            name="modalidade"
-            required
-            className="border-2 border-slate-700 rounded p-2"
-            value={servico.modalidade}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-          />
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <p>Categoria do Serviço</p>
+        <div>
+          <label className="block mb-2 text-sm font-semibold">
+            Categoria do Serviço
+          </label>
           <select
             name="categoria"
-            id="categoria"
-            className="border p-2 border-slate-800 rounded"
+            className="w-full p-3 rounded-lg bg-slate-900 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-orange-400"
             onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)}
           >
-            <option value="" selected disabled>
-              Selecione um Serviço
-            </option>
-
-            {categorias.map((categoria) => (
-              <>
-                <option value={categoria.id}>{categoria.nome_categoria}</option>
-              </>
+            <option value="">Selecione uma Categoria</option>
+            {categorias.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.tipo}
+              </option>
             ))}
           </select>
         </div>
-        {/* <button
+        <button
           type="submit"
-          className="rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800
-                               text-white font-bold w-1/2 mx-auto py-2 flex justify-center"
-          disabled={carregandoCategoria}
+          className="mt-4 w-full px-6 py-3 rounded-lg bg-orange-500 hover:bg-orange-600 transition font-semibold text-white text-lg shadow-md"
+          disabled={carregandoCategoria || isLoading}
         >
           {isLoading ? (
-            <ClipLoader color="#ffffff" size={24} />
+            <ClipLoader color="#fff" size={24} />
+          ) : id === undefined ? (
+            "Cadastrar"
           ) : (
-            <span>{id === undefined ? "Cadastrar" : "Atualizar"}</span>
+            "Atualizar"
           )}
-        </button> */}
+        </button>
       </form>
     </div>
   );

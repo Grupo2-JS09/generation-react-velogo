@@ -1,77 +1,62 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { SyncLoader } from "react-spinners";
 import type Servico from "../../../models/Servico";
 import { buscar } from "../../../services/Service";
-import CardServico from "../cardservico/CardServico"
-import { useEffect, useState } from "react";
-// import { SyncLoader } from "react-spinners";
+import CardServico from "../cardservico/CardServico";
 
 function ListaServicos() {
-
-  const navigate = useNavigate();
-
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [servicos, setServicos] = useState<Servico[]>([]);
 
-  // const { usuario, handleLogout } = useContext(AuthContext);
-  // const token = usuario.token;
-
-  // useEffect(() => {
-  //   if (token === "") {
-  //     alert("Você precisa estar logado!");
-  //     navigate("/");
-  //   }
-  // }, [token]);
-
   useEffect(() => {
     buscarServicos();
-  }, [servicos.length]);
+  }, []);
 
   async function buscarServicos() {
     try {
       setIsLoading(true);
 
-      // await buscar("/servicos", setServicos, {
-      //   headers: { Authorization: token },
-      // });
       await buscar("/servicos", setServicos);
-
     } catch (error: any) {
-      if (error.toString().includes("401")) {
-        // handleLogout();
-        navigate("/");
-      }
+      console.log(error);
     } finally {
       setIsLoading(false);
     }
   }
 
   return (
-    <>
-      {/* {isLoading && (
-          <div className="flex justify-center w-full my-8">
-            <SyncLoader color="#0C2B4E" size={32} />
-          </div>
-        )} */}
+    <div className="min-h-screen bg-gradient-to-b from-slate-800 via-slate-700 to-slate-900 text-white">
+      <div className="flex flex-col items-center min-h-screen py-10 px-6">
+        <h1 className="text-4xl font-bold mb-12 text-center tracking-tight">
+          Serviços
+        </h1>
 
+        {isLoading && <SyncLoader color="#74b9ff" size={32} />}
 
-      <div className="flex justify-center w-full my-4">
-          <div className="container flex flex-col mx-2">
-            {!isLoading && servico.length === 0 && (
-              <span className="text-3xl text-center my-8">
-                Nenhum Serviço foi encontrado!
-              </span>
-            )}
+        {!isLoading && servicos.length === 0 && (
+          <span className="text-2xl text-center my-8">
+            Nenhum Serviço foi encontrado!
+          </span>
+        )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {servicos.map((servico) => (
-                <CardServico key={servico.id} servico={servico} />
-              ))}
-            </div>
-          </div>
+        <div className="flex justify-end w-full max-w-6xl mb-10">
+          <Link to="/cadastrarservico">
+            <button className="px-6 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 transition font-semibold text-sm text-white shadow-md">
+              Solicitar novo serviço
+            </button>
+          </Link>
         </div>
 
-    </>
-  )
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 w-full max-w-6xl">
+          {servicos.map((servico) => (
+            <CardServico key={servico.id} servico={servico} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default ListaServicos
+export default ListaServicos;
