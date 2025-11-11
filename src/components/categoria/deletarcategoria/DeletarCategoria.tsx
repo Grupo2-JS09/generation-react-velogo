@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import type Categoria from "../../../models/Categoria";
 import { buscar, deletar } from "../../../services/Service";
+import { Car } from "lucide-react";
+import { ToastAlerta } from "../../utils/ToastAlerta";
 
 function DeletarCategoria() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -30,9 +32,9 @@ function DeletarCategoria() {
     try {
       await deletar(`/categorias/${id}`);
 
-      alert("Categoria apagada com sucesso");
+      ToastAlerta("Categoria apagada com sucesso", "sucesso");
     } catch (error: any) {
-      alert("Erro ao deletar a categoria.");
+      ToastAlerta("Erro ao deletar a categoria.", "erro");
     }
 
     setIsLoading(false);
@@ -44,26 +46,17 @@ function DeletarCategoria() {
   }
 
   return (
-    <div className='container w-1/3 mx-auto'>
-      <h1 className='text-4xl text-center my-4'>Deletar Categoria</h1>
-
-      <p className='text-center font-semibold mb-4'>
-        Voce tem certeza que deseja deletar esta categoria?
-      </p>
-
-      <div className='border flex flex-col rounded-2xl overflow-hidden justify-between'>
-        <header className='py-2 px-6 bg-indigo-600 text-white font-bold text-2xl'>
-          Categoria
-        </header>
-
-        <div className='p-4'>
-          <p className='text-xl h-full'>{categoria.tipo}</p>
+    <div className='flex h-screen justify-center items-center min-h-screen bg-gradient-to-b from-slate-800 via-slate-700 to-slate-900 text-white'>
+      <div className='flex flex-col w-1/3 h-1/4 justify-center align-center items-center bg-slate-800 bg-opacity-70 rounded-2xl shadow-lg p-6 hover:bg-slate-700 hover:scale-105 transition duration-300'>
+        <div className='flex items-center gap-2 mb-3'>
+          <Car className='text-orange-400 w-6 h-6' />
+          <h2 className='text-xl font-semibold text-center text-orange-400'>
+            {categoria.tipo}
+          </h2>
         </div>
-
-        <div className='flex'>
+        <div className='flex gap-6 justify-center align-center h-fit text-center'>
           <button
-            className='w-full text-slate-100 bg-indigo-400
-                        hover:bg-indigo-600 flex items-center justify-center'
+            className='flex items-center justify-center w-auto p-3 mt-4 text-center bg-[var(--darkblue)] hover:bg-blue-900 text-white rounded-xl font-semibold transition-all duration-300 '
             onClick={deletarCategoria}
           >
             {isLoading ? (
@@ -73,7 +66,7 @@ function DeletarCategoria() {
             )}
           </button>
           <button
-            className='text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2'
+            className='flex items-center justify-center w-auto p-3 mt-4 bg-[var(--orange)] hover:bg-orange-900 text-white rounded-xl font-semibold transition-all duration-300'
             onClick={retornar}
           >
             Não
